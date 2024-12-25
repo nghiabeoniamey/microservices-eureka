@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/gateway-service/fallback")
+@RequestMapping()
 public class FallbackController {
 
-    @GetMapping("/user")
-    public String userFallback() {
-        return "User service is not available";
+    @GetMapping("/common-service-fall-back")
+    public String commonService() {
+        return "Common service is not available";
     }
 
-    @GetMapping("/auth")
+    @GetMapping("/auth-service-fall-back")
     public String authFallback() {
         return "Auth service is not available";
     }

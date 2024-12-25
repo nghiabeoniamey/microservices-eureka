@@ -1,7 +1,6 @@
 package oniamey.nghiabe.gatewayservice.infrastructure.config.gateway;
 
 import oniamey.nghiabe.gatewayservice.infrastructure.security.AuthenticationFilter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
@@ -21,12 +20,12 @@ public class GatewayConfig {
     @Bean
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("user-service", r -> r.path("/users/**")
-                        .filters(f -> f.filter(filter))
-                        .uri("lb://user-service"))
+                .route("common-service", r -> r.path("/common-service/**")
+                        .filters(f -> f.filter(filter).stripPrefix(1))
+                        .uri("lb://common-service"))
 
-                .route("auth-service", r -> r.path("/auth/**")
-                        .filters(f -> f.filter(filter))
+                .route("auth-service", r -> r.path("/auth-service/**")
+                        .filters(f -> f.filter(filter).stripPrefix(1))
                         .uri("lb://auth-service"))
                 .build();
     }

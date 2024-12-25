@@ -26,9 +26,9 @@
     <modules>
         <module>eureka-server</module>
         <module>config-server</module>
-<!--        <module>employee-service</module>-->
+        <module>common-service</module>
 <!--        <module>department-service</module>-->
-<!--        <module>organization-service</module>-->
+        <module>auth-service</module>
         <module>gateway-service</module>
     </modules>
 

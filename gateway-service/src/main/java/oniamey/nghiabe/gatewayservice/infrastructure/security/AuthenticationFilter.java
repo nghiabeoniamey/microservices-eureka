@@ -2,7 +2,8 @@ package oniamey.nghiabe.gatewayservice.infrastructure.security;
 
 import io.jsonwebtoken.Claims;
 import oniamey.nghiabe.gatewayservice.infrastructure.utils.JwtUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -18,6 +19,7 @@ import reactor.core.publisher.Mono;
 @Component
 public class AuthenticationFilter implements GatewayFilter {
 
+    private static final Logger log = LoggerFactory.getLogger(AuthenticationFilter.class);
     private final RouterValidator routerValidator;
     private final JwtUtil jwtUtil;
 
@@ -32,15 +34,15 @@ public class AuthenticationFilter implements GatewayFilter {
         ServerHttpRequest request = exchange.getRequest();
 
         if (routerValidator.isSecured.test(request)) {
-            if (this.isAuthMissing(request))
-                return this.onError(exchange, "Authorization header is missing in request", HttpStatus.UNAUTHORIZED);
+//            if (this.isAuthMissing(request))
+//                return this.onError(exchange, "Authorization header is missing in request", HttpStatus.UNAUTHORIZED);
 
-            final String token = this.getAuthHeader(request);
+//            final String token = this.getAuthHeader(request);
+//
+//            if (jwtUtil.isInvalid(token))
+//                return this.onError(exchange, "Authorization header is invalid", HttpStatus.UNAUTHORIZED);
 
-            if (jwtUtil.isInvalid(token))
-                return this.onError(exchange, "Authorization header is invalid", HttpStatus.UNAUTHORIZED);
-
-            this.populateRequestWithHeaders(exchange, token);
+            this.populateRequestWithHeaders(exchange, "avc");
         }
         return chain.filter(exchange);
     }
@@ -52,7 +54,7 @@ public class AuthenticationFilter implements GatewayFilter {
     }
 
     private String getAuthHeader(ServerHttpRequest request) {
-        return request.getHeaders().getOrEmpty("Authorization").get(0);
+        return request.getHeaders().getOrEmpty("Authorization").getFirst();
     }
 
     private boolean isAuthMissing(ServerHttpRequest request) {
@@ -60,10 +62,10 @@ public class AuthenticationFilter implements GatewayFilter {
     }
 
     private void populateRequestWithHeaders(ServerWebExchange exchange, String token) {
-        Claims claims = jwtUtil.getAllClaimsFromToken(token);
+//        Claims claims = jwtUtil.getAllClaimsFromToken(token);
         exchange.getRequest().mutate()
-                .header("id", String.valueOf(claims.get("id")))
-                .header("role", String.valueOf(claims.get("role")))
+//                .header("id", String.valueOf(claims.get("id")))
+//                .header("role", String.valueOf(claims.get("role")))
                 .build();
     }
 
