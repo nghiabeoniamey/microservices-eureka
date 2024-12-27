@@ -7,30 +7,18 @@ import lombok.Getter;
 import lombok.Setter;
 import oniamey.nghiabe.commonservice.infrastructure.event.AuditEntityListener;
 
+import java.util.Date;
+
 @MappedSuperclass
+@Getter
+@Setter
 @EntityListeners(AuditEntityListener.class)
 public abstract class AuditEntity {
 
     @Column(name = "created_time")
-    private Long createdTime;
+    private Date createdTime;
 
-    @Column(name = "update_time")
-    private Long updateTime;
-
-    public Long getCreatedTime() {
-        return createdTime;
-    }
-
-    public void setCreatedTime(Long createdTime) {
-        this.createdTime = createdTime;
-    }
-
-    public Long getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Long updateTime) {
-        this.updateTime = updateTime;
-    }
+    @Column(name = "updated_time")
+    private Date updatedTime;
 
 }

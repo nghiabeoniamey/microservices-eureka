@@ -5,22 +5,23 @@ import jakarta.persistence.PreUpdate;
 import oniamey.nghiabe.commonservice.entities.base.AuditEntity;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class AuditEntityListener {
 
     @PrePersist
     private void onCreate(AuditEntity entity) {
         entity.setCreatedTime(getCurrentTime());
-        entity.setUpdateTime(getCurrentTime());
+        entity.setUpdatedTime(getCurrentTime());
     }
 
     @PreUpdate
     private void onUpdate(AuditEntity entity) {
-        entity.setUpdateTime(getCurrentTime());
+        entity.setUpdatedTime(getCurrentTime());
     }
 
-    private long getCurrentTime() {
-        return Calendar.getInstance().getTimeInMillis();
+    private Date getCurrentTime() {
+        return new Date();
     }
 
 }

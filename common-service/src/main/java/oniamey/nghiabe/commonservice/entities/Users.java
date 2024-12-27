@@ -24,7 +24,7 @@ public class Users extends CommonPropertiesEntity {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(name = "user_name")
+    @Column(name = "username")
     private String userName;
 
     @Column(name = "first_name")
@@ -44,8 +44,5 @@ public class Users extends CommonPropertiesEntity {
 
     @Column(name = "department_id")
     private Long departmentId;
-
-    @Column(name = "priority_id")
-    private Long priorityId;
 
 }

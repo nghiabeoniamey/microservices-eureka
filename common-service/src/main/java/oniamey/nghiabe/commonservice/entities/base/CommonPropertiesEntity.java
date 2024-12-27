@@ -10,10 +10,10 @@ import lombok.Setter;
 @MappedSuperclass
 public abstract class CommonPropertiesEntity extends AuditEntity {
 
-    @Column(name = "create_user")
-    private Long createUser;
+    @Column(name = "created_user")
+    private Long createdUser;
 
-    @Column(name = "update_user")
-    private Long updateUser;
+    @Column(name = "updated_user")
+    private Long updatedUser;
 
 }
