@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class EmailRequest {
+public class AuthFindUsersRequest {
 
     @NotBlank(message = "Email is required and not have blank")
     private String email;

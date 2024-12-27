@@ -20,9 +20,9 @@ public class DBGeneratorServiceImpl implements DBGeneratorService {
             log.info("User exist in system");
             return;
         }
-        Users users = new Users(1L, "Oniamey", "Hieu Nghia", "Trinh", "nghiabe.dev", "0849070512", 1L, 1L, 1L);
-        users.setCreateUser(1L);
-        users.setUpdateUser(1L);
+        Users users = new Users(1L, "Oniamey", "Hieu Nghia", "Trinh", "nghiabe.dev", "0849070512", 1L, 1L);
+        users.setCreatedUser(1L);
+        users.setUpdatedUser(1L);
         Users newUser = userRepository.save(users);
         log.info("new User: {}", newUser.toString());
     }

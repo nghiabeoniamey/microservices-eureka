@@ -28,6 +28,12 @@ public class ConfigView extends CommonPropertiesEntity {
     @Column(name = "view_path")
     private String path;
 
+    @Column(name  = "api_path")
+    private String apiPath;
+
+    @Column(name = "role_id")
+    private String roleId;
+
     @Column(name = "status")
     private Long status;
 
