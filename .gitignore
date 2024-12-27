@@ -2,4 +2,3 @@ resources/
 storage/
 .env
 .idea/
-auth-service
