@@ -1,4 +1,4 @@
-resources/
+docker-resources/
 storage/
 .env
 .idea/
